@@ -107,7 +107,7 @@ btnAgregar.addEventListener("click", function(event){
         let resumen = `{"contadorProductos" : ${contador},}
                         "totalEnProductos"  : ${totalEnProductos},
                         "costoTotal"       : ${costoTotal.toFixed(2)}   }`;
-        localStorage.Item("resumen", resumen);
+        localStorage.setItem("resumen", resumen);
         //localStorage.setItem("contadorProductos", contador);
         //localStorage.setItem("totalEnProductos", totalEnProductos);
         //localStorage.setItem("costoTotal", costoTotal.toFixed(2));
@@ -134,10 +134,8 @@ window.addEventListener("load", function(event){
         "costoTotal"        : ${costoTotal.toFixed(2)}   }`;
         localStorage.setItem("resumen", resumen);
     }//if
-
     let res = JSON.parse(localStorage.getItem("resumen"));
-
-    // if (localStorage.getItem("contadorProductos")==null){
+     // if (localStorage.getItem("contadorProductos")==null){
     //      localStorage.setItem("contadorProductos", "0");
     // }//if
     // if (localStorage.getItem("totalEnProductos")==null){
@@ -146,9 +144,6 @@ window.addEventListener("load", function(event){
     // if (localStorage.getItem("costoTotal")==null){
     //      localStorage.setItem("costoTotal", "0.0");
     // }//if
-
-
-
     contador = res.contador; // parseInt(localStorage.getItem("contaodrProductos"));
     totalEnProductos = res.totalEnProductos;// parseInt(localStorage.getItem("totalEnProductos"));
     costoTotal = res.costoTotal;// parseFloat(localStorage.getItem("costoTotal"));
