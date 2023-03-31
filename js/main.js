@@ -150,7 +150,6 @@ window.addEventListener("load", function(event){
     let res = JSON.parse(localStorage.getItem("resumen"));
     if (localStorage.getItem("datos")!==null) {
         datos= JSON.parse(localStorage.getItem("datos"));
-
         datos.forEach(r => {
             let row = `<tr>
                 <th>${r.id}</th>
@@ -161,7 +160,7 @@ window.addEventListener("load", function(event){
             cuerpoTabla[0].insertAdjacentHTML("beforeend, row");
         });
     }// != nul;
-    
+
     //      localStorage.setItem("contadorProductos", "0");
     // }//if
     // if (localStorage.getItem("totalEnProductos")==null){
