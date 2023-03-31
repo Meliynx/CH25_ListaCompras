@@ -1,5 +1,5 @@
 let txtNombre = document.getElementById("Name");
-let txtNumber = document.getElementById("number");
+let txtNumber = document.getElementById("Number");
 
 let btnAgregar = document.getElementById("btnAgregar");
 let btnClear = document.getElementById("btnClear");
@@ -20,6 +20,8 @@ let precio = 0;
 let contador = 0;
 let totalEnProductos = 0;
 let costoTotal = 0;
+
+let datos = []; //aqui se almacenaran los datos de la tabla
 
 // Limpiar campos 
 btnClear.addEventListener("click", function(event){
@@ -97,9 +99,20 @@ btnAgregar.addEventListener("click", function(event){
                     <td>${txtNombre.value}</td>
                     <td>${txtNumber.value}</td>
                     <td>$ ${precio}</td>
-                </true>`;
+                </tr>`;
+
+        let elemento = `{
+                        "id":${contador},
+                        "nombre" ; "${txtNombre.value}",
+                        "cantidad" : "${txtNumber.Value}",
+                        "precio" : "${precio}"
+                        }`;
+        datos.push( JSON.parse(elemento) );  
+
+        localStorage.setItem("datos", JSON.stringify(datos) );
+
         cuerpoTabla[0].insertAdjacentHTML("beforeend", row);
-        contatorProductos.innerText=contador;
+        contadorProductos.innerText=contador;
         totalEnProductos += parseFloat(txtNumber.value);
         productosTotal.innerText=totalEnProductos;
         costoTotal += precio * parseFloat(txtNumber.value);
@@ -135,7 +148,20 @@ window.addEventListener("load", function(event){
         localStorage.setItem("resumen", resumen);
     }//if
     let res = JSON.parse(localStorage.getItem("resumen"));
-     // if (localStorage.getItem("contadorProductos")==null){
+    if (localStorage.getItem("datos")!==null) {
+        datos= JSON.parse(localStorage.getItem("datos"));
+
+        datos.forEach(r => {
+            let row = `<tr>
+                <th>${r.id}</th>
+                <td>${r.nombre}</td>
+                <td>${r.cantidad}</td>
+                <td>$ ${r,precio}</td>
+            </tr>`
+            cuerpoTabla[0].insertAdjacentHTML("beforeend, row");
+        });
+    }// != nul;
+    
     //      localStorage.setItem("contadorProductos", "0");
     // }//if
     // if (localStorage.getItem("totalEnProductos")==null){
